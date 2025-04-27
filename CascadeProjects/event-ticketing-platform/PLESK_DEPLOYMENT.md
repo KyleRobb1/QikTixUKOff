@@ -97,7 +97,9 @@ Plesk provides a user-friendly control panel for managing web hosting, making it
    - Create a new user with a strong password
    - Note the connection details
 
-## Step 5: Deploy EventNest Using Docker
+## Step 5: Deploy EventNest
+
+### Option A: Using Docker (Recommended for Production)
 
 1. **Prepare Docker Compose File**:
    - Create a directory for your application:
@@ -227,7 +229,89 @@ Plesk provides a user-friendly control panel for managing web hosting, making it
      docker-compose up -d
      ```
 
-## Step 6: Set Up Environment Variables
+### Option B: Using FTP (Simpler Approach)
+
+If you prefer a more traditional deployment approach without Docker, you can use FTP to upload your application files directly to Plesk.
+
+1. **Build the Frontend**:
+   - On your local machine, navigate to the frontend directory:
+     ```
+     cd /path/to/eventnest/frontend
+     ```
+   - Install dependencies and build the application:
+     ```
+     npm install
+     npm run build
+     ```
+   - This will create a `build` directory with optimized static files
+
+2. **Prepare the Backend**:
+   - On your local machine, navigate to the backend directory:
+     ```
+     cd /path/to/eventnest/backend
+     ```
+   - Install production dependencies:
+     ```
+     npm install --production
+     ```
+
+3. **Set Up FTP Connection in Plesk**:
+   - In Plesk, go to your domain
+   - Click on "FTP Access"
+   - Create an FTP account if one doesn't exist
+   - Note the FTP credentials (hostname, username, password)
+
+4. **Upload Files Using an FTP Client**:
+   - Use an FTP client like FileZilla, Cyberduck, or WinSCP
+   - Connect using your FTP credentials
+   - Upload the frontend build files to `/var/www/vhosts/eventnest.com/httpdocs/`
+   - Upload the backend files to `/var/www/vhosts/eventnest.com/backend/`
+
+5. **Configure Node.js in Plesk**:
+   - In Plesk, go to your domain
+   - Click on "Node.js"
+   - Click "Enable Node.js"
+   - Set the following:
+     - Application root: `/var/www/vhosts/eventnest.com/backend`
+     - Application startup file: `src/server.js`
+     - Application mode: `production`
+     - Document root for static content: `/var/www/vhosts/eventnest.com/httpdocs`
+   - Click "Apply"
+
+6. **Set Environment Variables**:
+   - In the Node.js settings page, scroll down to "Application Environment Variables"
+   - Add all required environment variables:
+     - NODE_ENV: `production`
+     - PORT: `3000` (or your preferred port)
+     - DB_HOST: `localhost`
+     - DB_NAME: `eventnest`
+     - DB_USER: your database username
+     - DB_PASSWORD: your database password
+     - JWT_SECRET: a secure random string
+     - FRONTEND_URL: `https://eventnest.com`
+     - Add any other required variables
+   - Click "Apply"
+
+7. **Configure Nginx Proxy**:
+   - In Plesk, go to your domain
+   - Click on "Apache & nginx Settings"
+   - Under "Additional nginx directives", add:
+     ```
+     location /api {
+         proxy_pass http://localhost:3000;
+         proxy_http_version 1.1;
+         proxy_set_header Upgrade $http_upgrade;
+         proxy_set_header Connection 'upgrade';
+         proxy_set_header Host $host;
+         proxy_cache_bypass $http_upgrade;
+     }
+     ```
+   - Click "OK"
+
+8. **Restart the Node.js Application**:
+   - In the Node.js settings page, click "Restart Application"
+
+## Step 6: Set Up Environment Variables (Docker Method)
 
 1. **Create .env File**:
    - Create a file at `/var/www/vhosts/eventnest.com/docker/.env` with your configuration:
