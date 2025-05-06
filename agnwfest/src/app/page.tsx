@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -6,9 +7,9 @@ export default function Home() {
       {/* Navbar */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-agnwBlack/80 border-b border-agnwGrey backdrop-blur">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-          <a href="/">
+          <Link href="/">
             <Image src="/logo.svg" alt="AGNW Logo" width={56} height={56} className="h-12 w-12" />
-          </a>
+          </Link>
           <ul className="flex gap-8 font-headline text-lg tracking-widest">
             <li><a href="#lineup" className="hover:text-neonGreen transition">Line-Up</a></li>
             <li><a href="#tickets" className="hover:text-neonGreen transition">Tickets</a></li>
@@ -18,7 +19,6 @@ export default function Home() {
           </ul>
         </div>
       </nav>
-
       {/* Hero Section */}
       <header className="relative flex flex-col justify-center items-center h-screen bg-agnwBlack overflow-hidden pt-24">
         {/* Optional: Add a video or animated background here */}
