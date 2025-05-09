@@ -1,0 +1,42 @@
+<%- include('partials/header', { title: 'Apple Wallet Pass' }) %>
+
+<div class="wallet-container">
+    <h2>Apple Wallet Pass Preview</h2>
+    
+    <div class="wallet-pass">
+        <div class="wallet-header">
+            <img src="/images/apple-wallet-icon.svg" alt="Apple Wallet" class="wallet-logo">
+            <h3>qiktix uk</h3>
+        </div>
+        
+        <div class="wallet-content">
+            <% if (typeof event !== 'undefined' && event) { %>
+                <h4><%= event.name %></h4>
+                <p class="wallet-date"><%= new Date(event.date).toLocaleString() %></p>
+                <p class="wallet-location"><%= event.location %></p>
+            <% } else { %>
+                <h4>Event Information Unavailable</h4>
+            <% } %>
+            
+            <div class="wallet-barcode">
+                <!-- This would be a real barcode in a production environment -->
+                <div class="barcode-placeholder"></div>
+                <% if (typeof ticket !== 'undefined' && ticket) { %>
+                    <p class="ticket-id"><%= ticket.ticket_id %></p>
+                <% } else { %>
+                    <p class="ticket-id">Sample Ticket ID</p>
+                <% } %>
+            </div>
+        </div>
+        
+        <p class="wallet-note">
+            In a real environment, this would generate an actual .pkpass file that you could add to your Apple Wallet.
+        </p>
+        
+        <div class="wallet-actions">
+            <a href="/account" class="btn">Back to My Account</a>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %> 

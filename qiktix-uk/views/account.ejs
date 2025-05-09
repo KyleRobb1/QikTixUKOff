@@ -1,0 +1,96 @@
+<%- include('partials/header', { title: 'My Account' }) %>
+
+<h2>My Account</h2>
+
+<div class="account-container">
+    <div class="account-section">
+        <h3>Profile Information</h3>
+        <div class="profile-info">
+            <p><strong>Email:</strong> <%= user.email %></p>
+            <p><strong>Account created:</strong> <%= new Date(user.created_at).toLocaleDateString() %></p>
+            <!-- Add more profile fields later -->
+        </div>
+        <a href="#" class="btn btn-small">Edit Profile</a>
+    </div>
+
+    <div class="account-section">
+        <h3>My Tickets</h3>
+        <div class="tickets-list">
+            <% if (typeof tickets !== 'undefined' && tickets && tickets.length > 0) { %>
+                <% tickets.forEach(ticket => { %>
+                    <div class="ticket-item">
+                        <div class="ticket-info">
+                            <h4><%= ticket.events.name %></h4>
+                            <p><strong>Date:</strong> <%= new Date(ticket.events.date).toLocaleDateString() %></p>
+                            <p><strong>Location:</strong> <%= ticket.events.location %></p>
+                            <p><strong>Ticket ID:</strong> <%= ticket.ticket_id %></p>
+                            <p><strong>Type:</strong> <%= ticket.ticket_type %></p>
+                            <p><strong>Purchased:</strong> <%= new Date(ticket.purchase_date).toLocaleDateString() %></p>
+                        </div>
+                        <div class="ticket-actions">
+                            <a href="/tickets/<%= ticket.ticket_id %>/pdf" class="btn btn-small" target="_blank">View PDF</a>
+                            <a href="/tickets/<%= ticket.ticket_id %>/wallet" class="btn btn-small">Apple Wallet</a>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p class="empty-state">You haven't purchased any tickets yet.</p>
+                <a href="/events" class="btn btn-small">Browse Events</a>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="account-section">
+        <h3>My Events</h3>
+        <div class="events-list">
+            <% if (typeof userEvents !== 'undefined' && userEvents && userEvents.length > 0) { %>
+                <% userEvents.forEach(event => { %>
+                    <div class="event-item">
+                        <div class="event-details"> 
+                            <h4><%= event.name %></h4>
+                            <p><strong>Date:</strong> <%= new Date(event.date).toLocaleDateString() %></p>
+                            <p><strong>Location:</strong> <%= event.location %></p>
+                            <p><strong>Price:</strong> £<%= parseFloat(event.price).toFixed(2) %></p>
+                            <p><strong>Available Tickets:</strong> <%= event.available_tickets || 'N/A' %></p>
+                        </div>
+                        <div class="event-actions">
+                            <a href="/events/<%= event.event_id %>" class="btn btn-small">View Details</a>
+                            <a href="/events/<%= event.event_id %>/edit" class="btn btn-small">Edit Event</a>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p class="empty-state">You haven't created any events yet.</p>
+                <a href="/events/submit" class="btn btn-small">Submit an Event</a>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="account-section">
+        <h3>Apple Wallet Integration</h3>
+        <p>Connect your Apple Wallet to easily access your tickets on your iOS devices.</p>
+        <div class="wallet-box">
+            <img src="/images/apple-wallet-icon.svg" alt="Apple Wallet" class="wallet-icon">
+            <p>Add your tickets to Apple Wallet for quick access at the venue.</p>
+            <p>Benefits:</p>
+            <ul>
+                <li>No need to print tickets</li>
+                <li>Location-based notifications</li>
+                <li>Always available, even offline</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="account-section">
+        <h3>Account Settings</h3>
+        <div class="settings-list">
+            <a href="#">Change Password</a>
+            <a href="#">Notification Preferences</a>
+            <form action="/logout" method="POST" style="margin-top: 20px;">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %> 

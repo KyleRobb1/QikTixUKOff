@@ -1,0 +1,29 @@
+<%- include('../partials/header', { title: 'Login' }) %>
+
+<div class="auth-container">
+    <h2>Log In</h2>
+
+    <% if (error) { %>
+        <p class="error-message"><%= error %></p>
+    <% } %>
+    <% if (info) { %>
+        <p class="info-message"><%= info %></p> 
+    <% } %>
+
+    <form action="/login" method="POST" class="auth-form">
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <%# Add "Forgot Password?" link later %>
+        <button type="submit" class="btn">Log In</button>
+    </form>
+
+    <p class="auth-switch">Don't have an account? <a href="/signup">Sign Up</a></p>
+</div>
+
+<%- include('../partials/footer') %> 

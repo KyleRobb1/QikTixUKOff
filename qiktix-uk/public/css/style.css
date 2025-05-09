@@ -1,0 +1,785 @@
+/* Basic Reset & General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Using common sans-serif fonts often seen on large sites */
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f2f2f7; /* Light gray background, common pattern */
+    /* Remove body padding to allow full-width header */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px; /* Max width for content */
+    margin: 0 auto; /* Center content */
+    padding: 20px 0;
+}
+
+a {
+    color: #ff00ff; /* Neon pink links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Style for nav logout button to look like a link */
+button.nav-logout-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: #fff; /* Match nav link color */
+    font-family: inherit;
+    font-size: inherit; /* Match nav link size */
+    font-weight: 500; /* Match nav link weight */
+    cursor: pointer;
+    display: inline;
+}
+
+button.nav-logout-btn:hover {
+    text-decoration: underline; /* Mimic link hover */
+    border-bottom: none; /* Remove potential nav link border */
+}
+
+/* Header Styles */
+header {
+    background: #ff00ff; /* Neon pink header */
+    color: #fff;
+    padding: 10px 0;
+    border-bottom: 1px solid #ff80ff;
+    margin-bottom: 0; /* Remove margin if container adds it */
+}
+
+header .header-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    /* Remove text-align and margin */
+    font-size: 1.8em; /* Adjust size as needed */
+    font-weight: bold;
+}
+
+header h1 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header nav ul {
+    list-style: none;
+    /* Remove text-align */
+}
+
+header nav ul li {
+    display: inline-block; /* Use inline-block for better spacing control */
+    margin: 0 15px; /* Adjust spacing */
+}
+
+header nav ul li a {
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 5px 0;
+}
+
+header nav ul li a:hover {
+    border-bottom: 2px solid #fff; /* Simple hover effect */
+    text-decoration: none;
+}
+
+/* Search Form Styles */
+.search-form {
+    display: flex;
+    flex-grow: 1; /* Allow search bar to take available space */
+    margin: 0 30px; /* Add some margin around the search bar */
+    max-width: 500px; /* Limit max width */
+}
+
+.search-form input[type="search"] {
+    flex-grow: 1;
+    padding: 8px 12px;
+    border: 1px solid #ff80ff; /* Lighter pink border */
+    border-radius: 4px 0 0 4px; /* Rounded corners on the left */
+    border-right: none;
+    font-size: 0.95em;
+}
+
+.search-form button {
+    padding: 8px 15px;
+    border: none;
+    background-color: #ff00ff; /* Neon pink button */
+    color: white;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0; /* Rounded corners on the right */
+    font-size: 0.95em;
+    transition: background-color 0.2s ease;
+}
+
+.search-form button:hover {
+    background-color: #ff33ff; /* Brighter pink on hover */
+}
+
+/* Main Content Styles */
+main {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(255, 0, 255, 0.2);
+    margin-top: 30px; /* Add space below header */
+}
+
+/* Home Page Specific Styles */
+.hero {
+    background-color: #ffe6ff; /* Light pink background - for when image fails to load */
+    background-image: url('/images/events/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 80px 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 0, 255, 0.3); /* Pink overlay */
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.hero h2, .hero p, .hero a {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h2 {
+    margin-bottom: 15px;
+    font-size: 2.5em;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(255, 0, 255, 0.5);
+}
+
+.hero p {
+    color: #fff;
+    font-size: 1.2em;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 2px rgba(255, 0, 255, 0.5);
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #ff00ff;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 0, 255, 0.4);
+}
+
+.cta-button:hover {
+    background-color: #ff33ff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 0, 255, 0.5);
+    text-decoration: none;
+}
+
+/* Event Photos Gallery */
+.event-photos {
+    margin-bottom: 40px;
+}
+
+.event-photos h3 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    color: #ff00ff;
+}
+
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.gallery-item {
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 16/9;
+    box-shadow: 0 4px 8px rgba(255, 0, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(255, 0, 255, 0.3);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-item .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 0, 255, 0.7);
+    color: white;
+    padding: 15px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.event-listings h3 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    color: #ff00ff;
+}
+
+.event-grid {
+    /* Styles for event grid/cards will go here later */
+    min-height: 100px; /* Just for placeholder */
+    text-align: center;
+    color: #888;
+}
+
+/* Events Page Specific Styles */
+.event-filters {
+    background-color: #f8f8f8;
+    padding: 15px;
+    margin-bottom: 25px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    /* Add filter controls styling later */
+}
+
+.event-list {
+    /* Remove default list styling if it was a <ul> */
+    list-style: none; 
+    padding: 0;
+}
+
+.event-item {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    /* Could use flexbox or grid for more complex internal layout */
+    display: flex; /* Use flexbox for basic alignment */
+    justify-content: space-between;
+    align-items: center;
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.event-item:hover {
+    box-shadow: 0 8px 20px rgba(255, 0, 255, 0.2);
+}
+
+.event-item .event-details {
+    flex-grow: 1; /* Allow details to take up space */
+    margin-right: 20px; /* Space between details and button */
+}
+
+.event-item h3 {
+    margin: 0 0 8px 0; /* Adjust heading margin */
+    font-size: 1.3em;
+    color: #ff00ff; /* Match header pink */
+}
+
+.event-item p {
+    margin: 4px 0;
+    color: #555;
+    font-size: 0.95em;
+}
+
+.event-item a.view-details-btn {
+    display: inline-block;
+    background-color: #ff00ff;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+.event-item a.view-details-btn:hover {
+    background-color: #ff33ff;
+    transform: translateY(-2px);
+}
+
+/* Auth Page Specific Styles */
+.auth-container {
+    max-width: 450px;
+    margin: 30px auto;
+    padding: 30px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.auth-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.auth-form .form-group {
+    margin-bottom: 18px;
+}
+
+.auth-form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #555;
+}
+
+.auth-form input[type="email"],
+.auth-form input[type="password"],
+.auth-form input[type="text"] { /* Added for potential future fields */
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.auth-form small {
+    font-size: 0.8em;
+    color: #777;
+}
+
+.btn, /* General button class */
+.auth-form button[type="submit"] {
+    background-color: #ff00ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn:hover,
+.auth-form button[type="submit"]:hover {
+    background-color: #ff33ff;
+}
+
+.error-message {
+    color: #dc3545; /* Red for errors */
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.info-message {
+    color: #004085; /* Blue for info */
+    background-color: #cce5ff;
+    border: 1px solid #b8daff;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.95em;
+    color: #555;
+}
+
+.auth-switch a {
+    color: #ff00ff;
+    font-weight: bold;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px 0;
+    color: #666; /* Slightly darker gray */
+    font-size: 0.9em;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Account Page Styles */
+.account-container {
+    margin-top: 20px;
+}
+
+.account-section {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.account-section h3 {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    color: #ff00ff;
+}
+
+.profile-info p {
+    margin: 8px 0;
+}
+
+.btn-small {
+    display: inline-block;
+    width: auto;
+    padding: 8px 15px;
+    font-size: 0.9em;
+    margin-top: 15px;
+}
+
+.settings-list a {
+    display: block;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.settings-list a:last-of-type {
+    border-bottom: none;
+}
+
+.btn-danger {
+    background-color: #ff0066; /* Pinkish danger button */
+}
+
+.btn-danger:hover {
+    background-color: #ff4d94;
+}
+
+.empty-state {
+    color: #777;
+    font-style: italic;
+    padding: 10px 0;
+}
+
+/* Ticket Styles */
+.ticket-item {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.2s ease;
+}
+
+.ticket-item:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ticket-info {
+    flex: 1 1 70%;
+    min-width: 200px;
+}
+
+.ticket-info h4 {
+    margin: 0 0 10px 0;
+    color: #ff00ff;
+}
+
+.ticket-info p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+.ticket-actions {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding-left: 15px;
+}
+
+.ticket-actions .btn-small {
+    margin-right: 10px;
+    background-color: #ff00ff;
+    color: white;
+}
+
+/* Apple Wallet Styles */
+.wallet-box {
+    background: linear-gradient(135deg, #ff66ff 0%, #ff00ff 100%);
+    color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.wallet-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+}
+
+.wallet-box ul {
+    list-style-type: disc;
+    text-align: left;
+    margin: 10px 0 0 20px;
+    padding-left: 20px;
+}
+
+/* Wallet Pass Page Styles */
+.wallet-container {
+    max-width: 600px;
+    margin: 30px auto;
+}
+
+.wallet-pass {
+    background-color: #f8f8f8;
+    border-radius: 16px;
+    padding: 25px;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border: 2px solid #ff00ff;
+    box-shadow: 0 4px 20px rgba(255, 0, 255, 0.3);
+}
+
+.wallet-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ff80ff;
+    background-color: #ff00ff;
+}
+
+.wallet-logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+}
+
+.wallet-content {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.wallet-content h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.4em;
+    color: #ff00ff;
+}
+
+.wallet-date, .wallet-location {
+    margin: 5px 0;
+}
+
+.wallet-barcode {
+    margin: 25px auto;
+    width: 80%;
+    max-width: 300px;
+}
+
+.barcode-placeholder {
+    height: 100px;
+    background: repeating-linear-gradient(
+        90deg,
+        #000,
+        #000 2px,
+        #fff 2px,
+        #fff 6px
+    );
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.ticket-id {
+    font-family: monospace;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.wallet-note {
+    font-style: italic;
+    color: #777;
+    font-size: 0.9em;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.wallet-actions {
+    text-align: center;
+    margin-top: 25px;
+}
+
+/* Create a directory and placeholder for Apple Wallet icon */
+.empty-state {
+    color: #777;
+    font-style: italic;
+    padding: 10px 0;
+}
+
+/* Event Submission Form Styles */
+.form-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(255, 0, 255, 0.2);
+    margin: 20px 0;
+}
+
+.event-form .form-group {
+    margin-bottom: 20px;
+}
+
+.event-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #444;
+}
+
+.event-form input,
+.event-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.event-form input:focus,
+.event-form textarea:focus {
+    border-color: #ff00ff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 0, 255, 0.25);
+}
+
+.event-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.event-form small {
+    display: block;
+    margin-top: 5px;
+    color: #777;
+    font-size: 0.85em;
+}
+
+.event-form button[type="submit"] {
+    background-color: #ff00ff;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.event-form button[type="submit"]:hover {
+    background-color: #ff33ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 0, 255, 0.3);
+}
+
+/* Event Actions Styles */
+.events-list .event-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(255, 0, 255, 0.1);
+}
+
+.events-list .event-details {
+    flex: 1;
+}
+
+.events-list .event-details h4 {
+    margin: 0 0 10px 0;
+    color: #ff00ff;
+    font-size: 1.2em;
+}
+
+.events-list .event-details p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+.event-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 15px;
+}
+
+.event-actions .btn-small {
+    width: 120px;
+    text-align: center;
+}
+
+/* Add more specific styles as needed */ 

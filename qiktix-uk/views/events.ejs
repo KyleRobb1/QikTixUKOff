@@ -1,0 +1,30 @@
+<%- include('partials/header', { title: 'Events' }) %>
+
+<h2>Browse Events</h2>
+
+<div class="event-filters">
+    <!-- Add filter options later (date, category, location) -->
+    <p>Filter options will go here.</p>
+</div>
+
+<div class="event-list">
+    <% if (events.length > 0) { %>
+        <!-- Loop through events and display them -->
+        <% events.forEach(event => { %>
+            <div class="event-item">
+                <div class="event-details"> 
+                    <h3><%= event.name %></h3>
+                    <%# Add formatting for date later %>
+                    <p>Date: <%= event.date %></p> 
+                    <p>Location: <%= event.location %></p>
+                    <%# Add more details like description snippet later %>
+                </div>
+                <a href="/events/<%= event.id %>" class="view-details-btn">View Details</a>
+            </div>
+        <% }) %>
+    <% } else { %>
+        <p>No events found. Check back soon!</p>
+    <% } %>
+</div>
+
+<%- include('partials/footer') %> 
